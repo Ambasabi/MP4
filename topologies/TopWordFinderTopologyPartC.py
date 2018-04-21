@@ -16,9 +16,9 @@ class TopWordFinderTopologyPartC(Topology):
     # SplitSentenceBolt -> "split"
     split = SplitSentenceBolt.spec(inputs={spout: Grouping.fields('word')})
     # WordCountBolt -> "count"
-    normalize = NormalizerBolt.spec(inputs={split: Grouping.fields('word')})
+    count = WordCountBolt.spec(inputs={split: Grouping.fields('word')})
     # NormalizerBolt -> "normalize"
-    count = WordCountBolt.spec(inputs={normalize: Grouping.fields('word')})
+    normalize = NormalizerBolt.spec(inputs={count: Grouping.fields('word')})
 
 
     # NOTE: will have to manually kill Topology after submission
