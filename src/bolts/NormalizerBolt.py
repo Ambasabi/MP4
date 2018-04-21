@@ -32,7 +32,7 @@ class NormalizerBolt(Bolt):
         # else:
         if lowerword not in self.common_words:
             self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid, word))
-            self.logger.info("- [pid={}] - Emitting: normalize [{}]".format(self.pid, word))
+            self.logger.info("- [pid={}] - Emitting: normalize [{}]".format(self.pid, lowerword))
 
 
         # Task 3: use the "self.logger.info(...)" function to print 1. the message received and 2. the message emitted
