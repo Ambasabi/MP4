@@ -16,7 +16,8 @@ class NormalizerBolt(Bolt):
     def process(self, tup):
         # TODO:
         # Task 1: make the words all lower case
-        word = str(tup).lower()
+        word = tup.values[0]
+        lowerword = word.lower()
         #lowersentence = tempsentence.lower()
         # Task 2: remove the common words
         # ret = []
@@ -26,13 +27,14 @@ class NormalizerBolt(Bolt):
         #     else:
         #         ret.append(word)
         #     sentence = tuple(ret)
-        while():
-            if word in self.common_words:
-                continue
-            else:
-                self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid, word))
-                self.logger.info("- [pid={}] - Emitting: normalize [{}]".format(self.pid, word))
-                break
+        # if word in self.common_words:
+        #         return
+        # else:
+        if lowerword in self.common_words:
+            return
+        else:
+            self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid, word))
+            self.logger.info("- [pid={}] - Emitting: normalize [{}]".format(self.pid, word))
 
         # Task 3: use the "self.logger.info(...)" function to print 1. the message received and 2. the message emitted
         #self.emit([sentence])
