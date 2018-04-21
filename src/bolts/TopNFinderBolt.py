@@ -15,14 +15,19 @@ class TopNFinderBolt(Bolt):
     def process(self, tup):
         # TODO:
         # Task: keep track of the top N words
-        topwordslist = []
-        word = tup.values[0]
-        # see if there's a way to store these values in some kind of dictionary to later be counted?
-        self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid,word))
-        topwordslist.append(word)
-        # self.top_words = Counter(topwordslist)
-        self.top_words(topwordslist)
+        # topwordslist = []
+        # word = tup.values[0]
+        # # see if there's a way to store these values in some kind of dictionary to later be counted?
+        # self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid,word))
+        # topwordslist.append(word)
+        # # self.top_words = Counter(topwordslist)
+        # self.top_words(topwordslist)
         # self.emit([word, self.counter[word]])
+        # self.logger.info("- [pid={}] - Emitting: count [{},{}]".format(self.pid,word,self.counter[word]))
+        word = tup.values[0]
+        self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid,word))
+        self.counter[word] += 1
+        self.emit([word, self.counter[word]])
         # self.logger.info("- [pid={}] - Emitting: count [{},{}]".format(self.pid,word,self.counter[word]))
         
 
