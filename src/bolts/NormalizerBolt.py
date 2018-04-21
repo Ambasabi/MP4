@@ -16,5 +16,15 @@ class NormalizerBolt(Bolt):
     def process(self, tup):
         # TODO:
         # Task 1: make the words all lower case
-        # Task 2: remove the common words
+        lowersentence = tup.lower()
+        # Task 2: remove the common words JUST REMEMBER TO CHECK YOUR MP0 FOR EXAMPLE ON HOW TO REMOVE COMMON WORDS
+        ret = []
+        for word in lowersentence:
+            if word in self.common_words:
+                continue
+            else:
+                ret.append(word)
+            sentence = tuple(ret)
         # Task 3: use the "self.logger.info(...)" function to print 1. the message received and 2. the message emitted
+        self.emit([sentence])
+        self.logger.info("- [pid={}] - Emitting: spout [{}]".format(self.pid,sentence))
