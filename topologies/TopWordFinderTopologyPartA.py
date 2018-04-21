@@ -9,11 +9,11 @@ class TopWordFinderTopologyPartA(Topology):
     # Task: wire up the topology
     # Make sure you use the following names for each component
     # RandomSentenceSpout -> "spout"
-    spout = RandomSentenceSpout
+    spout = RandomSentenceSpout.spec()
     # SplitSentenceBolt -> "split"
-    split = SplitSentenceBolt
+    split = SplitSentenceBolt.spec(inputs={spout: Grouping.fields('word')})
     # WordCountBolt -> "count"
-    count = WordCountBolt
+    count = WordCountBolt.spec(inputs={split: Grouping.fields('word')})
 
    
     # NOTE: will have to manually kill Topology after submission
