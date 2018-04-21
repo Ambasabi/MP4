@@ -20,7 +20,8 @@ class TopNFinderBolt(Bolt):
         # see if there's a way to store these values in some kind of dictionary to later be counted?
         self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid,word))
         topwordslist.append(word)
-        self.top_words = Counter(topwordslist)
+        # self.top_words = Counter(topwordslist)
+        self.top_words(topwordslist)
         # self.emit([word, self.counter[word]])
         # self.logger.info("- [pid={}] - Emitting: count [{},{}]".format(self.pid,word,self.counter[word]))
         
