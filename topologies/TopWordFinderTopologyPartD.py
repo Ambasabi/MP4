@@ -21,7 +21,7 @@ class TopWordFinderTopologyPartD(Topology):
     # WordCountBolt -> "count"
     count = WordCountBolt.spec(inputs={normalize: Grouping.fields('word')})
     # TopNFinderBolt -> "top-n"
-    topn = TopNFinderBolt.spec(inputs={count: Grouping.fields('word','count')})
+    topn = TopNFinderBolt.spec(inputs={count: Grouping.fields('word')})
 
 
     # NOTE: will have to manually kill Topology after submission
