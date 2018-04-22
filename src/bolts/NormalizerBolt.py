@@ -17,11 +17,11 @@ class NormalizerBolt(Bolt):
         # TODO:
         # Task 1: make the words all lower case
         word = tup.values[0]
-        lowerword = word.lower()
-        if lowerword not in self.common_words:
+        word = word.lower()
+        if word not in self.common_words:
             self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid, word))
-            self.emit(lowerword)
-            self.logger.info("- [pid={}] - Emitting: normalize [{}]".format(self.pid, lowerword))
+            self.emit(word)
+            self.logger.info("- [pid={}] - Emitting: normalize [{}]".format(self.pid, word))
 
 
         # Task 3: use the "self.logger.info(...)" function to print 1. the message received and 2. the message emitted
