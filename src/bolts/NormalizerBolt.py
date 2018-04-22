@@ -20,7 +20,7 @@ class NormalizerBolt(Bolt):
         word = word.lower()
         if word not in self.common_words:
             self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid, word))
-            self.emit(word)
+            self.emit([word])
             self.logger.info("- [pid={}] - Emitting: normalize [{}]".format(self.pid, word))
 
 
