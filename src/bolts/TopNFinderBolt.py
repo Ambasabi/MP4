@@ -24,7 +24,8 @@ class TopNFinderBolt(Bolt):
         # self.top_words(topwordslist)
         # self.emit([word, self.counter[word]])
         # self.logger.info("- [pid={}] - Emitting: count [{},{}]".format(self.pid,word,self.counter[word]))
-        word = tup.values[0].split(',')
+        word = tup.values[0]
+        self.emit(word)
         self.logger.info("- [pid={}] - Processing received message [{}]".format(self.pid,word))
         # self.counter[word[0]] += word[1]
         #self.emit([word, self.counter[word]])
